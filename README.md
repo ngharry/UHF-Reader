@@ -13,8 +13,8 @@ An Arduino Library for the PK-UHF101U reader.
   * [Print the whole Database](#print-the-whole-database)
   * [Print Card-Holder Welcome Message](#print-card-holder-welcome-message)
   * [Print Encoded TIDs to Keyboard](#print-encoded-tids-to-keyboard)
-- [For Developers](#for-developer)
-- [Error Codes](#error-code)
+- [For Developers](#for-developers)
+- [Error Codes](#error-codes)
 - [Bugs Reporting](#bugs-reporting)
 - [TODO](#todo)
 
