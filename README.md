@@ -19,7 +19,7 @@ An Arduino Library for the PK-UHF101U reader.
 - [TODO](#todo)
 
 ## Pre-requisite ##
-- Installed [the lastest version of Arduino](#https://www.arduino.cc/en/Main/Software "Download Arduino")
+- Installed [the lastest version of Arduino](https://www.arduino.cc/en/Main/Software "Download Arduino")
 - git
 
 ## Installation ##
