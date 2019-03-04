@@ -19,7 +19,7 @@ An Arduino Library for the PK-UHF101U reader.
 - [TODO](#todo)
 
 ## Pre-requisite ##
-- Installed [the lastest version of Arduino](#https://www.arduino.cc/en/Main/Software "Download Arduino").
+- Installed [the lastest version of Arduino](#https://www.arduino.cc/en/Main/Software "Download Arduino")
 - git
 
 ## Installation ##
@@ -150,7 +150,7 @@ See [examples/GetRawData](examples/GetRawData/GetRawData.ino "Get Raw Data").
 See [examples/PrintDatabase](examples/PrintDatabase/PrintDatabase.ino "Print The Whole Database").
 
 ### Print Card-Holder Welcome Message ###
-See[examples/PrintWelcomeMessage](examples/PrintWelcomeMessage/PrintWelcomeMessage.ino "Print Welcome Message").
+See [examples/PrintWelcomeMessage](examples/PrintWelcomeMessage/PrintWelcomeMessage.ino "Print Welcome Message").
 
 ### Print Encoded TIDs to Keyboard ###
 See [examples/PrintToKeyboard](examples/PrintToKeyboard/PrintToKeyboard.ino "Print TIDs to Keyboard").
