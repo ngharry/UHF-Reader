@@ -54,7 +54,7 @@ void setup()
 }
 ```
 
-** UHFRecv **
+**UHFRecv**
 - For example:
 
 ```cpp
