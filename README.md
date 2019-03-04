@@ -1,7 +1,23 @@
 # PK-UHF101U Library #
+An Arduino Library for the PK-UHF101U reader.
 
 ## Index
-- 
+- [Pre-requisite](#pre-requisite)
+- [Installation](#installation)
+  * [Windows] (#windows)
+  * [Linux](#)
+- [How-to](#how-to)
+  * [Initalise the Library](#initialise-the-library)
+  * [Check Data Preservation](#check-data-preservation)
+  * [Get Raw Data from UHF Reader](#get-raw-data-from-uhf-reader)
+  * [Print the whole Database](#print-the-whole-database)
+  * [Print Card-Holder Welcome Message](#print-card-holder-welcome-message)
+  * [Print Encoded TIDs to Keyboard](#print-encoded-tids-to-keyboard)
+- [For Developer](#for-developer)
+- [Error Code](#error-code)
+- [Bugs Reporting](#bugs-reporting)
+- [TODO] (#todo)
+
 ## Pre-requisite
 - Lastest installed version of Arduino.
 - git
@@ -14,7 +30,7 @@
 cd %userprofile%\Documents\Arduino\libraries &&
 git clone https://github.com/ngharry/uhf-reader
 ```
-to download UHF-reader library.
+   to download UHF-reader library.
 - Wait until the downloading process finishes.
 
 ## How to
@@ -124,16 +140,34 @@ void flash()
 ```
 
 ### Get Raw Data from UHF Reader
-See [examples/GetRawData](blob/master/examples/GetRawData/GetRawData.ino "Get Raw Data").
+See [examples/GetRawData](examples/GetRawData/GetRawData.ino "Get Raw Data").
 
 ### Print the whole Database
-See [examples/PrintDatabase](blob/master/examples/PrintDatabase/PrintDatabase.ino "Print The Whole Database").
+See [examples/PrintDatabase](examples/PrintDatabase/PrintDatabase.ino "Print The Whole Database").
 
 ### Print Card-Holder Welcome Message
-See[examples/PrintWelcomeMessage](blob/master/examples/PrintWelcomeMessage/PrintWelcomeMessage.ino "Print Welcome Message").
+See[examples/PrintWelcomeMessage](examples/PrintWelcomeMessage/PrintWelcomeMessage.ino "Print Welcome Message").
 
 ### Print Encoded TIDs to Keyboard
-See [examples/PrintToKeyboard](master/examples/PrintToKeyboard/PrintToKeyboard.ino "Print TIDs to Keyboard").
+See [examples/PrintToKeyboard](examples/PrintToKeyboard/PrintToKeyboard.ino "Print TIDs to Keyboard").
+
+## For Developer
+- Because the buffer memory for serial communication of Arduino just can hold up to 64 bytes, the maximum number of cards that the system can read at once (without data loss) is **8 cards**. To satisfied the requirements of the system, I change `UHF_MAX_CARDS = 15` in `attribute.h` (to read 15 cards at once), with the acceptance that, **rarely**, a card with incorrect encoded TID will be inserted to the database. The system that encodes the TID can just ignore this value.
+
+-	I do not recommend changing the size of TID returned from UHF reader. **6 bytes** is a reasonable value.
+
+- The maximum number of cards that can exist in the database (25 cards) should stay unchanged to make sure the stable working status of the system.
+
+- I adjust the default baudrate of UHF reader (from the default value of 57600 bps to 9600 bps) to make sure `void loop()` of Arduino runs fast enough to preserve the data 
+transfered from UHF reader to Arduino (via RS485 communication). In case you want to change the baudrate to its default, you would have to fiddle a bit with `delay()` values in the system to preserve the data. However, I do not recommend doing that way, as 9600 bps is a reasonable value (Fix me if I am wrong).
+
+- Every time calling `Database::inventoryCards()`, make sure a `timeFlag` is wrapped around the function (example below):
+```cpp
+timeFlag = true;
+Status status = Database::inventoryCards(&database, newData);
+timeFlag = false;
+```
+   to ensure that, cards' timestamps are updated correctly. 
 
 ## Error Code
 
@@ -152,25 +186,7 @@ See [examples/PrintToKeyboard](master/examples/PrintToKeyboard/PrintToKeyboard.i
 |0x0B | 11 | ERR_QUEUE_EMPTY | Empty queue, can not dequeue anymore |
 |0x1A | 26 | ERR_READ_RS485 | No data read from RS485 communication | 
 
-## For Developer
-- Because the buffer memory for serial communication of Arduino just can hold up to 64 bytes, the maximum number of cards that the system can read at once (without data loss) is **8 cards**. To satisfied the requirements of the system, I change `UHF_MAX_CARDS = 15` in `attribute.h` (to read 15 cards at once), with the acceptance that, **rarely**, a card with incorrect encoded TID will be inserted to the database. The system that encodes the TID can just ignore this value.
-
--	I do not recommend changing the size of TID returned from UHF reader. **6 bytes** is a reasonable value.
-
-- The maximum number of cards that can exist in the database (25 cards) should stay unchanged to make sure the stable working status of the system.
-
-- I adjust the default baudrate of UHF reader (from the default value of 57600 bps to 9600 bps) to make sure `void loop()` of Arduino runs fast enough to preserve the data 
-transfered from UHF reader to Arduino (via RS485 communication). In case you want to change the baudrate to its default, you would have to fiddle a bit with `delay()` values in the system to preserve the data. However, I do not recommend doing that way, as 9600 bps is a reasonable value (Fix me if I am wrong).
-
-- Every time calling `Database::inventoryCards()`, make sure a `timeFlag` is wrapped around the function (example below):
-```cpp
-timeFlag = true;
-Status status = Database::inventoryCards(&database, newData);
-timeFlag = false;
-```
-to ensure that, cards' timestamps are updated correctly. 
-
-## Bug Reporting 
+## Bugs Reporting 
 
 ## TODO
 - [ ] Add terminology table.
