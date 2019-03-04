@@ -4,7 +4,7 @@ An Arduino Library for the PK-UHF101U reader.
 ## Index
 - [Pre-requisite](#pre-requisite)
 - [Installation](#installation)
-  * [Windows] (#windows)
+  * [Windows](#windows)
   * [Linux](#)
 - [How-to](#how-to)
   * [Initalise the Library](#initialise-the-library)
@@ -16,10 +16,10 @@ An Arduino Library for the PK-UHF101U reader.
 - [For Developer](#for-developer)
 - [Error Code](#error-code)
 - [Bugs Reporting](#bugs-reporting)
-- [TODO] (#todo)
+- [TODO](#todo)
 
 ## Pre-requisite
-- Lastest installed version of Arduino.
+- Installed [the lastest version of Arduino](#https://www.arduino.cc/en/Main/Software "Download Arduino").
 - git
 
 ## Installation
@@ -172,7 +172,7 @@ timeFlag = false;
 ## Error Code
 
 | HEX | DEC | Name | Description |
-|:----------:|:------------:|:--------:|:-------|
+|:----------:|:------------:|:--------|:-------|
 |0x00 | 0 | STATUS_ERROR | General errors |
 |0x01 | 1 | STATUS_SUCCESS| Function runs successfully, no errors |
 |0x02 | 2 | ERR_INV_TIMEOUT | Inventory command is time-out |
@@ -190,7 +190,7 @@ timeFlag = false;
 
 ## TODO
 - [ ] Add terminology table.
-- [ ] Add more error codes (as specified in doc/Protocols.pdf).
+- [ ] Add more error codes (as specified in `doc/Protocols.pdf`).
 - [ ] Add intalling process for Linux (I love Linux).
 
 
