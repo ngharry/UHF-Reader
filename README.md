@@ -28,7 +28,7 @@ An Arduino Library for the PK-UHF101U reader.
 
 ```
 cd %userprofile%\Documents\Arduino\libraries &&
-git clone https://github.com/ngharry/uhf-reader
+git clone https://github.com/ngharry/UHF-Reader
 ```
    to download UHF-reader library.
 - Wait until the downloading process finishes.
