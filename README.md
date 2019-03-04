@@ -1,11 +1,11 @@
 # PK-UHF101U Library #
 An Arduino Library for the PK-UHF101U reader.
 
-## Index
+## Index ##
 - [Pre-requisite](#pre-requisite)
 - [Installation](#installation)
   * [Windows](#windows)
-  * [Linux](#)
+  * [Linux](#linux)
 - [How-to](#how-to)
   * [Initalise the Library](#initialise-the-library)
   * [Check Data Preservation](#check-data-preservation)
@@ -13,17 +13,17 @@ An Arduino Library for the PK-UHF101U reader.
   * [Print the whole Database](#print-the-whole-database)
   * [Print Card-Holder Welcome Message](#print-card-holder-welcome-message)
   * [Print Encoded TIDs to Keyboard](#print-encoded-tids-to-keyboard)
-- [For Developer](#for-developer)
-- [Error Code](#error-code)
+- [For Developers](#for-developer)
+- [Error Codes](#error-code)
 - [Bugs Reporting](#bugs-reporting)
 - [TODO](#todo)
 
-## Pre-requisite
+## Pre-requisite ##
 - Installed [the lastest version of Arduino](#https://www.arduino.cc/en/Main/Software "Download Arduino").
 - git
 
-## Installation
-## Windows
+## Installation ##
+### Windows ###
 - Open `cmd`, enter
 
 ```
@@ -33,11 +33,15 @@ git clone https://github.com/ngharry/uhf-reader
    to download UHF-reader library.
 - Wait until the downloading process finishes.
 
-## How to
-### Initialise the Library
+### Linux ###
+[TODO] Add tutorial for Linux here. 
+
+## How to ##
+### Initialise the Library ###
 Objects instantiated from the classes in this library must be global.
 
-### Database
+**Database**
+
 - Objects must be instantiated in form of pointer to `class Database`. Otherwise, the whole system will be **crashed**.
 - For example:
 ```cpp
@@ -50,7 +54,7 @@ void setup()
 }
 ```
 
-### UHFRecv
+** UHFRecv **
 - For example:
 
 ```cpp
@@ -62,7 +66,7 @@ void setup()
 }
 ```
 
-### Check Data Preservation
+### Check Data Preservation ###
 ```cpp
 #include "UHFRecv.h"
 
@@ -139,19 +143,19 @@ void flash()
 }
 ```
 
-### Get Raw Data from UHF Reader
+### Get Raw Data from UHF Reader ###
 See [examples/GetRawData](examples/GetRawData/GetRawData.ino "Get Raw Data").
 
-### Print the whole Database
+### Print the whole Database ###
 See [examples/PrintDatabase](examples/PrintDatabase/PrintDatabase.ino "Print The Whole Database").
 
-### Print Card-Holder Welcome Message
+### Print Card-Holder Welcome Message ###
 See[examples/PrintWelcomeMessage](examples/PrintWelcomeMessage/PrintWelcomeMessage.ino "Print Welcome Message").
 
-### Print Encoded TIDs to Keyboard
+### Print Encoded TIDs to Keyboard ###
 See [examples/PrintToKeyboard](examples/PrintToKeyboard/PrintToKeyboard.ino "Print TIDs to Keyboard").
 
-## For Developer
+## For Developers ##
 - Because the buffer memory for serial communication of Arduino just can hold up to 64 bytes, the maximum number of cards that the system can read at once (without data loss) is **8 cards**. To satisfied the requirements of the system, I change `UHF_MAX_CARDS = 15` in `attribute.h` (to read 15 cards at once), with the acceptance that, **rarely**, a card with incorrect encoded TID will be inserted to the database. The system that encodes the TID can just ignore this value.
 
 -	I do not recommend changing the size of TID returned from UHF reader. **6 bytes** is a reasonable value.
@@ -169,7 +173,7 @@ timeFlag = false;
 ```
    to ensure that, cards' timestamps are updated correctly. 
 
-## Error Code
+## Error Codes ##
 
 | HEX | DEC | Name | Description |
 |:----------:|:------------:|:--------|:-------|
@@ -186,9 +190,9 @@ timeFlag = false;
 |0x0B | 11 | ERR_QUEUE_EMPTY | Empty queue, can not dequeue anymore |
 |0x1A | 26 | ERR_READ_RS485 | No data read from RS485 communication | 
 
-## Bugs Reporting 
+## Bugs Reporting ## 
 
-## TODO
+## TODO ##
 - [ ] Add terminology table.
 - [ ] Add more error codes (as specified in `doc/Protocols.pdf`).
 - [ ] Add intalling process for Linux (I love Linux).
